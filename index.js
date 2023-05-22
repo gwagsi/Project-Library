@@ -1,25 +1,27 @@
 let myLibrary = [];
 //let books = document.getElementById(books);
 
-function Book(title, author, pages) {
+function Book(index, title, author, pages) {
   // the constructor...
+  this.index = index;
   this.title = title;
   this.author = author;
   this.pages = pages;
 }
 
-function addBookToLibrary(title, author, pages) {
+function addBookToLibrary(index, title, author, pages) {
   // do stuff here
-  const newBook = new Book(title, author, pages);
+  const newBook = new Book(index, title, author, pages);
   myLibrary.push(newBook);
 }
 
 function getValue() {
   console.log(myLibrary);
-  title = document.getElementById("title").value;
-  author = document.getElementById("author").value;
-  pages = document.getElementById("pages").value;
-  addBookToLibrary(title, author, pages);
+  const title = document.getElementById("title").value;
+  const author = document.getElementById("author").value;
+  const pages = document.getElementById("pages").value;
+  const index = myLibrary.length;
+  addBookToLibrary(index, title, author, pages);
 }
 
 function displayBooks() {
@@ -30,15 +32,26 @@ function displayBooks() {
   myLibrary.forEach((book) => {
     let tr = document.createElement("tr");
     for (const key in book) {
-      console.log("we are here2");
-      let th = document.createElement("th");
-      console.log(`${key}: ${book[key]}`);
-      th.innerText = book[key];
-      console.log(th);
-      tr.appendChild(th);
-      console.log(tr);
+      if (key != "index") {
+        let th = document.createElement("th");
+        th.innerText = book[key];
+        tr.appendChild(th);
+      }
     }
-    console.log(table);
+    const deleteButton = document.createElement("button");
+    const buttonId = book.index;
+    deleteButton.setAttribute("id", buttonId);
+    deleteButton.innerText = "Delete";
+    deleteButton.addEventListener("click", deleteBook);
+    tr.appendChild(deleteButton);
     table.appendChild(tr);
   });
 }
+deleteBook = (e) => {
+  console.log(e.target.id);
+  target = e.target.id;
+  console.log(myLibrary);
+  myLibrary.splice(target, 1);
+  console.log(myLibrary);
+  displayBooks();
+};
