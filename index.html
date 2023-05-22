@@ -19,6 +19,11 @@
         <input type="text" name="author" id="author">
         <label for="pages"># of Pages</label>
         <input type="number" name="pages" id="pages">
+        <label for="readStatus">Read Status:</label>
+<select name="readStatus" id="status" >
+  <option value=1>Read</option>
+  <option value=0>Unread</option>
+</select>
         <button type="submit" onclick="getValue()">Add</button>
     </div>
     <div><button onclick="displayBooks()">Display Books</button>
