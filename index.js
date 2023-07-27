@@ -1,13 +1,15 @@
 let myLibrary = [];
 //let books = document.getElementById(books);
 
-function Book(index, title, author, pages, status) {
+class Book()  {
+  constructor(index, title, author, pages, status){
   // the constructor...
   this.index = index;
   this.title = title;
   this.author = author;
   this.pages = pages;
   this.status = status;
+}
 }
 
 function addBookToLibrary(index, title, author, pages, status) {
